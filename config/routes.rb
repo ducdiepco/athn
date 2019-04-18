@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'patients', to: 'patients#index'
+
+  post 'patient', to: 'patients#create'
+
+  get 'patient/:id', to: 'patients#show'
+
+  get 'patient/:patient_id/treatments', to: 'treatments#for_patient'
+
+  get 'patient/:patient_id/diagnoses', to: 'patient_diagnoses#for_patient'
+
+  get 'patient/:patient_id/visits', to: 'visits#for_patient'
 end

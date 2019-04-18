@@ -1,3 +1,3 @@
 class Patient < ApplicationRecord
-  validates :email, presence: true, uniqueness: true
+  has_many :patients
 end

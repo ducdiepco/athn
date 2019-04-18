@@ -5,6 +5,9 @@ class PatientsController < ApplicationController
   def create
   end
 
+  def show
+  end
+
   private
 
   def patient_params
