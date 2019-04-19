@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'patients', to: 'patients#index'
 
+  get 'medications', to: 'medications#index'
+
+  get 'diagnoses', to: 'diagnoses#index'
+
   post 'patient', to: 'patients#create'
 
   get 'patient/:id', to: 'patients#show'

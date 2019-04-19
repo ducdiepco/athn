@@ -1,10 +1,13 @@
 class PatientsController < ApplicationController
-  def index
+  self.permitted_attrs = %i[id first_name last_name email]
+
+  private
+
+  def serilizer_class
+    PatientSerializer
   end
 
-  def create
-  end
-
-  def show
+  def query_object
+    PatientsQuery.new(model_params)
   end
 end
