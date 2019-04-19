@@ -1,6 +1,8 @@
 class PatientDiagnosesController < ApplicationController
   include Searchable
 
+  self.permitted_attrs = %i[patient_id]
+
   private
 
   def serilizer_class
@@ -8,10 +10,6 @@ class PatientDiagnosesController < ApplicationController
   end
 
   def query_object
-    PatientDiagnosesQuery.new(filtered_params)
-  end
-
-  def filtered_params
-    params.permit(:patient_id)
+    PatientDiagnosesQuery.new(model_params)
   end
 end
