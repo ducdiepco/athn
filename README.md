@@ -13,3 +13,6 @@ rake 'import_csv:run[data/treatment.csv, Treatment]'
 rake 'import_csv:run[data/visit.csv, Visit]'
 rake 'import_csv:run[data/patient_diagnosis.csv, PatientDiagnosis]'
 ```
+## Documentation
+
+Documentation for Project please read [this](https://ducdiepco.github.io/athn-api-docs/)
