@@ -4,12 +4,13 @@ RSpec.describe PatientsController, type: :api do
 
 
   describe 'GET index /patients/' do
+    subject { get 'patients' }
 
-    context 'Patients exsit' do
+    context 'when data exists' do
       let!(:patients) { create_list(:patient, 5) }
 
-      before { get 'patients' }
       it 'returns a list of patients' do
+        subject
         expect(json.count).to eq(5)
         patient = json.first
         expect(patient['id']).not_to eq(nil)
@@ -18,10 +19,9 @@ RSpec.describe PatientsController, type: :api do
       end
     end
 
-    context 'Patients do not exsit' do
-      before { get 'patients' }
-
-      it 'return an error' do
+    context 'when data does not exist' do
+      it 'return an error and 404 status' do
+        subject
         expect(response_status).to eq 404
         expect(json['error']).to eq 'No results found'
       end
