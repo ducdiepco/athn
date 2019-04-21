@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   class_attribute :permitted_attrs
 
@@ -70,5 +71,9 @@ class ApplicationController < ActionController::API
 
   def render_404(e)
     render json: { error: 'Record not found' } , status: :not_found
+  end
+
+  def render_unprocessable_entity_response(exception)
+    render json: exception.record.errors.messages, status: :unprocessable_entity
   end
 end

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe PatientsController, type: :api do
 
-
   describe 'GET index /patients/' do
     subject { get 'patients' }
 
@@ -86,6 +85,39 @@ RSpec.describe PatientsController, type: :api do
       it 'returns an error with 404 status' do
         expect(response_status).to eq 404
         expect(json['error']).to eq 'Record not found'
+      end
+    end
+  end
+
+    describe 'POST create_with_treatments /patient-with-treatments/' do
+    subject(:create_patient_with_treatments) { post 'patient-with-treatments', params }
+
+    let(:params) do
+      {
+        first_name: 'first',
+        last_name: 'last',
+        email: 'email@email.com',
+        treatments: [
+          {
+            medication_id: create(:medication).id,
+            dosage: '1000IU / day',
+            start_date: Date.today
+          },
+          {
+            medication_id: create(:medication).id,
+            dosage: '1000IU / day',
+            start_date: Date.today
+          }
+        ]
+      }
+    end
+
+    context 'create sucess' do
+      it 'returns new patient with treatments' do
+        create_patient_with_treatments
+        expect(json['id']).not_to eq nil
+        expect(json['first_name']).not_to eq nil
+        expect(json['last_name']).not_to eq nil
       end
     end
   end

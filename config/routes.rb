@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   post 'patient', to: 'patients#create'
 
+  post 'patient-with-treatments', to: 'patients#create_with_treatments'
+
   get 'patient/:id', to: 'patients#show'
 
   get 'patient/:patient_id/treatments', to: 'treatments#for_patient'
