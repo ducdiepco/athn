@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe PatientWithTreatmentsForm do
+RSpec.describe CreatePatientWithTreatments do
   describe '#save' do
     subject(:create_patient) { described_class.new(params).save }
 
@@ -26,7 +26,6 @@ RSpec.describe PatientWithTreatmentsForm do
 
     context 'create success' do
       it 'returns new patient' do
-        expect(DoSomething).to receive(:call).with(any_args)
         expect(create_patient.id).not_to eq nil
         expect(create_patient.treatments.count).to eq 2
       end

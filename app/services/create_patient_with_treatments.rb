@@ -1,4 +1,4 @@
-class PatientWithTreatmentsForm
+class CreatePatientWithTreatments
   include ActiveModel::Model
 
   attr_accessor :first_name, :last_name, :email, :treatments
@@ -15,7 +15,6 @@ class PatientWithTreatmentsForm
       create_patient
       create_treatments
     end
-    DoSomething.call patient
     patient
   end
 
